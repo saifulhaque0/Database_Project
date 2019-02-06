@@ -18,7 +18,7 @@ public class Main {
         file = new Scanner(new File("Basketball.csv"));
 
         numOfLines--;
-        Players players = new Players(numOfLines);
+        Players players = new Players();
 
         String name, status, team, position;
         int age, jerseyNumber;
@@ -39,7 +39,7 @@ public class Main {
                 age = Integer.parseInt(info[5]);
                 position = info[6];
 
-                players.addPlayer(numOfLines, new Player(name, status, team, position, age, jerseyNumber, salary));
+                players.addPlayer(new Player(name, status, team, position, age, jerseyNumber, salary));
                 //numOfLines++;
             }
 

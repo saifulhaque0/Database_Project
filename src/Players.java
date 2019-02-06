@@ -3,14 +3,10 @@ import java.util.List;
 
 public class Players {
 
-    private List<Player> chosen = new ArrayList<>();
+    private List<Player> chosen;
 
-    public Players(int numOfPlayers){
-        /*
-        System.out.println(numOfPlayers);
-        chosen = new ArrayList<Player>(numOfPlayers);
-        System.out.println(chosen.size());
-        */
+    public Players(){
+        chosen = new ArrayList<Player>();
     }
 
     public String toString(){
@@ -21,10 +17,7 @@ public class Players {
         return  toR;
     }
 
-    public void addPlayer(int  i, Player p){
-        /*
-        chosen.set(i, p);
-        */
+    public void addPlayer(Player p){
         chosen.add(p);
     }
 
@@ -32,7 +25,7 @@ public class Players {
         List<Player> toR = new ArrayList<Player>();
 
         for (Player p : chosen)
-            if (p.getSalary() > minS)
+            if (p.getSalary() >= minS)
                 toR.add(p);
 
         return toR;
@@ -42,7 +35,27 @@ public class Players {
         List<Player> toR = new ArrayList<Player>();
 
         for (Player p : chosen)
-            if (p.getSalary() < maxS)
+            if (p.getSalary() <= maxS)
+                toR.add(p);
+
+        return toR;
+    }
+
+    public List<Player> ageLessThan(double maxA){
+        List<Player> toR = new ArrayList<Player>();
+
+        for (Player p : chosen)
+            if (p.getAge() <= maxA)
+                toR.add(p);
+
+        return toR;
+    }
+
+    public List<Player> ageGreaterThan(double minA){
+        List<Player> toR = new ArrayList<Player>();
+
+        for (Player p : chosen)
+            if (p.getAge() >= minA)
                 toR.add(p);
 
         return toR;
@@ -64,6 +77,14 @@ public class Players {
             for (int j = i + 1; j < chosen.size(); j++)
                 if (chosen.get(i).getJerseyNumber() < chosen.get(j).getJerseyNumber())
                     swap(i,j);
+    }
+
+    public Player comboTeamJersey(int jn, String team){
+        for (Player p : chosen)
+            if (p.getJerseyNumber() == jn && p.getTeam().equals(team))
+                return p;
+
+        return null;
     }
 
     public void swap(int a, int b){
