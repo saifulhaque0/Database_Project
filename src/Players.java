@@ -87,6 +87,50 @@ public class Players {
         return null;
     }
 
+    public double totalSalaries(){
+        double toR = 0;
+        for (Player p : chosen)
+            toR += p.getSalary();
+
+        return toR;
+    }
+
+    public Player getPlayer(int jersey, String team){
+        for (Player p : chosen)
+            if (p.getJerseyNumber() == jersey && p.getTeam().equals(team))
+                return p;
+
+        return null;
+    }
+
+    public double totalSalaries(String team){
+        double toR = 0;
+        for (Player p : chosen)
+            if (p.getTeam().equals(team))
+                toR += p.getSalary();
+
+        return toR;
+    }
+
+    public double averageSalary(){
+        double a = 0;
+
+        for (Player p : chosen)
+            a += p.getSalary();
+
+        return a / chosen.size();
+    }
+
+    public double averageSalary(String team){
+        double a = 0;
+
+        for (Player p : chosen)
+            if (p.getTeam().equals(team))
+                a += p.getSalary();
+
+        return a / chosen.size();
+    }
+
     public void swap(int a, int b){
         Player p = chosen.get(a);
         chosen.set(a, chosen.get(b));
